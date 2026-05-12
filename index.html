@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shahaf Nails | פדיקור ומניקור מקצועי – מתחם הסופרים</title>
+  <meta name="description" content="שחף – מטפלת ציפורניים מוסמכת. פדיקור רפואי, מניקור, ג'ל ועיצוב. מקבלת בבית במתחם הסופרים. תורים בוואטסאפ."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;700;900&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --mocha:#6B4F3A;
+      --mocha-light:#C4A882;
+      --mocha-pale:#F5EFE6;
+      --rose:#D4756B;
+      --rose-light:#EEB5AE;
+      --rose-pale:#FDF0EE;
+      --gold:#B7882C;
+      --gold-light:#F2E2B8;
+      --cream:#FAF6F1;
+      --white:#FFFFFF;
+      --dark:#2C1A10;
+      --gray:#6B5C52;
+      --gray-light:#BDB0A8;
+      --wa:#25D366;
+      --wa-dark:#128C7E;
+      --border:rgba(180,150,120,0.2);
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'Heebo',sans-serif;background:var(--cream);color:var(--dark);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+    .font-display{font-family:'Frank Ruhl Libre',serif;}
+
+    /* ── Cursor Glow ── */
+    #cursor-glow{
+      position:fixed;width:380px;height:380px;border-radius:50%;
+      background:radial-gradient(circle,rgba(180,120,80,0.12) 0%,transparent 70%);
+      pointer-events:none;z-index:0;transform:translate(-50%,-50%);
+      transition:left 0.08s ease,top 0.08s ease;
+    }
+
+    /* ── Buttons ── */
+    .btn-wa{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:16px 32px;border-radius:100px;
+      background:linear-gradient(135deg,var(--wa),var(--wa-dark));
+      color:#fff;font-family:'Heebo',sans-serif;font-size:17px;font-weight:700;
+      text-decoration:none;cursor:pointer;border:none;
+      box-shadow:0 6px 24px rgba(37,211,102,0.35);
+      transition:transform 0.2s,box-shadow 0.2s;white-space:nowrap;
+    }
+    .btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,0.5);}
+    .btn-wa:active{transform:translateY(0);}
+
+    /* ── Floating WA ── */
+    .float-wa{position:fixed;bottom:24px;left:24px;z-index:100;}
+    .float-wa a{
+      display:flex;align-items:center;justify-content:center;
+      width:58px;height:58px;border-radius:50%;
+      background:linear-gradient(135deg,var(--wa),var(--wa-dark));
+      box-shadow:0 4px 20px rgba(37,211,102,0.45);
+      transition:transform 0.2s,box-shadow 0.2s;
+    }
+    .float-wa a:hover{transform:scale(1.08);}
+    @media(min-width:768px){.float-wa{bottom:32px;left:32px;}}
+
+    /* ── Layout ── */
+    .container{max-width:920px;margin:0 auto;padding:0 20px;}
+    .container-sm{max-width:680px;margin:0 auto;padding:0 20px;}
+    section{width:100%;position:relative;z-index:1;}
+
+    /* ── Hero ── */
+    .hero{
+      min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+      padding:60px 0 48px;overflow:hidden;
+      background:linear-gradient(155deg,var(--cream) 0%,#F0E6D9 45%,var(--rose-pale) 100%);
+    }
+
+    /* ── Stars ── */
+    .stars{color:#C8992A;letter-spacing:2px;}
+
+    /* ── Cards ── */
+    .card{background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);border:1px solid var(--border);border-radius:20px;padding:28px 24px;box-shadow:0 2px 20px rgba(107,79,58,0.06);}
+
+    /* ── Section labels ── */
+    .section-label{font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--mocha-light);display:block;margin-bottom:10px;}
+    .section-title{font-family:'Frank Ruhl Libre',serif;font-size:clamp(26px,5vw,40px);font-weight:700;color:var(--dark);line-height:1.2;}
+    .divider{width:44px;height:3px;background:linear-gradient(90deg,var(--rose),var(--mocha-light));border-radius:2px;margin:14px 0 0;}
+
+    /* ── Trust bar ── */
+    .trust-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 24px;align-items:center;}
+    .trust-item{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:var(--gray);}
+
+    /* ── Gallery ── */
+    .gallery-grid{columns:2;column-gap:10px;}
+    .gallery-item{break-inside:avoid;margin-bottom:10px;border-radius:14px;overflow:hidden;cursor:pointer;aspect-ratio:3/4;}
+    .gallery-item img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 30%;transition:transform 0.35s ease;}
+    .gallery-item:hover img{transform:scale(1.04);}
+
+    /* ── Before/After Slider ── */
+    .ba-wrap{position:relative;width:100%;max-width:520px;margin:0 auto;border-radius:20px;overflow:hidden;user-select:none;cursor:col-resize;box-shadow:0 8px 32px rgba(107,79,58,0.18);}
+    .ba-wrap img{display:block;width:100%;height:340px;object-fit:cover;}
+    .ba-after{position:absolute;inset:0;overflow:hidden;}
+    .ba-after img{position:absolute;top:0;right:0;width:100%;height:100%;object-fit:cover;}
+    .ba-line{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,0.4);cursor:col-resize;z-index:3;}
+    .ba-handle{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;z-index:4;}
+    .ba-label{position:absolute;bottom:12px;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;color:#fff;z-index:5;}
+    .ba-label.before{right:12px;background:rgba(107,79,58,0.75);}
+    .ba-label.after{left:12px;background:rgba(37,211,102,0.8);}
+
+    /* ── Quiz ── */
+    .quiz-opt{
+      display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:14px;
+      border:2px solid var(--border);background:rgba(255,255,255,0.7);cursor:pointer;
+      transition:border-color 0.2s,background 0.2s;font-weight:500;font-size:15px;color:var(--dark);
+      text-align:right;
+    }
+    .quiz-opt:hover{border-color:var(--mocha-light);background:rgba(245,239,230,0.9);}
+    .quiz-opt.selected{border-color:var(--mocha);background:var(--mocha-pale);}
+    .quiz-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--gray-light);flex-shrink:0;transition:all 0.2s;}
+    .quiz-opt.selected .quiz-dot{background:var(--mocha);border-color:var(--mocha);}
+
+    /* ── Reviews ── */
+    .review-card{background:var(--mocha-pale);border-radius:20px;padding:24px;border:1px solid rgba(196,168,130,0.3);}
+
+    /* ── Services ── */
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
+    .service-item{display:flex;align-items:flex-start;gap:14px;padding:20px;border-radius:16px;background:rgba(255,255,255,0.9);border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s;}
+    .service-item:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(107,79,58,0.1);}
+    .service-icon{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:var(--mocha-pale);display:flex;align-items:center;justify-content:center;}
+
+    /* ── FAQ ── */
+    details{border-bottom:1px solid var(--border);}
+    details:last-child{border-bottom:none;}
+    summary{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-weight:600;font-size:15.5px;color:var(--dark);cursor:pointer;list-style:none;gap:12px;}
+    summary::-webkit-details-marker{display:none;}
+    .faq-icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--mocha-pale);display:flex;align-items:center;justify-content:center;transition:background 0.2s,transform 0.2s;}
+    details[open] summary .faq-icon{background:var(--mocha);transform:rotate(45deg);}
+    details[open] summary .faq-icon svg{stroke:#fff;}
+    .faq-body{padding:0 0 18px;font-size:15px;color:var(--gray);line-height:1.7;}
+
+    /* ── Scroll reveal ── */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* ── Lightbox ── */
+    #lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:200;align-items:center;justify-content:center;padding:20px;}
+    #lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;object-fit:contain;}
+
+    /* ── Responsive ── */
+    @media(max-width:640px){
+      .hero-ctas{flex-direction:column;align-items:stretch;}
+      .hero-ctas>*{width:100%;justify-content:center;}
+      .btn-wa{font-size:16px;padding:15px 22px;}
+      .ba-wrap img,.ba-after img{height:240px;}
+      .about-grid{grid-template-columns:1fr!important;}
+      .about-photo{margin:0 auto 28px;}
+    }
+
+    @media(prefers-reduced-motion:no-preference){
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+      .fu{animation:fadeUp 0.65s ease both;}
+      .fu-1{animation:fadeUp 0.65s ease 0.12s both;}
+      .fu-2{animation:fadeUp 0.65s ease 0.24s both;}
+      .fu-3{animation:fadeUp 0.65s ease 0.36s both;}
+      .fu-4{animation:fadeUp 0.65s ease 0.48s both;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░ Cursor Glow ░ -->
+<div id="cursor-glow" aria-hidden="true"></div>
+
+<!-- ░ Float WA ░ -->
+<div class="float-wa">
+  <a href="https://wa.me/972548009028?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%97%D7%A3%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%F0%9F%92%85" target="_blank" rel="noopener" aria-label="קבעי תור בוואטסאפ">
+    <svg width="26" height="26" fill="white" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+</div>
+
+<!-- ░░░░░░░░░░░░ HERO ░░░░░░░░░░░░ -->
+<section class="hero">
+  <div class="container-sm" style="text-align:center;position:relative;z-index:1;">
+
+    <!-- Avatar -->
+    <div class="fu" style="margin-bottom:22px;">
+      <div style="width:130px;height:130px;border-radius:50%;border:3px solid var(--mocha-light);background:var(--mocha-pale);margin:0 auto;overflow:hidden;box-shadow:0 4px 20px rgba(107,79,58,0.2);">
+        <img src="shahaf.png" alt="שחף" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+      </div>
+      <p style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--mocha-light);margin-top:9px;text-transform:uppercase;">שחף · מניקוריסטית מקצועית · 10 שנות ניסיון</p>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="font-display fu-1" style="font-size:clamp(33px,7.5vw,56px);font-weight:900;color:var(--dark);line-height:1.13;margin-bottom:18px;">
+      ציפורניים מושלמות<br/>שמחזיקות חודש<br/><span style="color:var(--rose);">בקליניקה הפרטית שלי</span>
+    </h1>
+
+    <!-- Sub -->
+    <p class="fu-2" style="font-size:clamp(16px,3vw,19px);color:var(--gray);line-height:1.65;max-width:500px;margin:0 auto 34px;">
+      קליניקה פרטית במתחם הסופרים. ציוד מקצועי, חומרים איכותיים, יחס אישי ומפנק.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-ctas fu-3" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/972548009028?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%97%D7%A3%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%F0%9F%92%85" target="_blank" rel="noopener" class="btn-wa">
+        <svg width="20" height="20" fill="white" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        קבעי תור בוואטסאפ
+      </a>
+      <a href="#gallery" style="display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:100px;border:2px solid var(--mocha-light);color:var(--mocha);font-family:'Heebo',sans-serif;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='var(--mocha-pale)'" onmouseout="this.style.background='transparent'">
+        לראות עבודות
+      </a>
+    </div>
+
+    <!-- Micro proof -->
+    <div class="fu-4" style="margin-top:22px;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;">
+      <span class="stars">★★★★★</span>
+      <span style="font-size:14px;color:var(--gray);font-weight:600;">4.9</span>
+      <span style="color:var(--gray-light);">·</span>
+      <span style="font-size:14px;color:var(--gray);">200+ לקוחות מרוצות</span>
+      <span style="color:var(--gray-light);">·</span>
+      <span style="font-size:14px;color:var(--gray);">מוסמכת ומקצועית</span>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ TRUST BAR ░░ -->
+<div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 20px;position:relative;z-index:1;">
+  <div class="trust-bar">
+    <div class="trust-item"><svg width="17" height="17" fill="none" stroke="var(--mocha)" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>מוסמכת ומקצועית</div>
+    <div class="trust-item"><svg width="17" height="17" fill="none" stroke="var(--mocha)" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>קליניקה פרטית במתחם הסופרים</div>
+    <div class="trust-item"><svg width="17" height="17" fill="none" stroke="var(--mocha)" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>מגיבה תוך דקות</div>
+    <div class="trust-item"><svg width="17" height="17" fill="none" stroke="var(--mocha)" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.091z"/></svg>חומרים מקצועיים בלבד</div>
+    <div class="trust-item"><svg width="17" height="17" fill="none" stroke="var(--mocha)" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>200+ לקוחות מרוצות</div>
+  </div>
+</div>
+
+<!-- ░░░░░░░░░░░░ GALLERY ░░░░░░░░░░░░ -->
+<section id="gallery" style="padding:64px 0;background:var(--cream);">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:40px;">
+      <span class="section-label">עבודות אמיתיות</span>
+      <h2 class="section-title">מה יוצא מהידיים שלי</h2>
+      <div class="divider"></div>
+      <p style="margin-top:14px;font-size:15px;color:var(--gray);max-width:440px;line-height:1.65;">כל עיצוב הוא עבודת יד מקורית. שלחי תמונה ואני אשחזר אותו עבורך.</p>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <div class="gallery-item" onclick="openLightbox(0)"><img src="work-1.jpg" alt="פרנץ' תכלת-כחול" loading="lazy"/></div>
+      <div class="gallery-item" onclick="openLightbox(1)"><img src="work-2.jpg" alt="פרנץ' ורוד פוקסיה" loading="lazy"/></div>
+      <div class="gallery-item" onclick="openLightbox(2)"><img src="work-3.jpg" alt="nude עם קווים לבנים" loading="lazy"/></div>
+      <div class="gallery-item" onclick="openLightbox(3)"><img src="work-5.jpg" alt="לבן עם פרפרים זהב" loading="lazy"/></div>
+      <div class="gallery-item" onclick="openLightbox(4)"><img src="work-6.jpg" alt="פרנץ' לבן שקדית" loading="lazy"/></div>
+      <div class="gallery-item" onclick="openLightbox(5)"><img src="work-7.jpg" alt="אפור" loading="lazy"/></div>
+    </div>
+
+    <div class="reveal" style="margin-top:32px;text-align:center;">
+      <a href="https://wa.me/972548009028?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%97%D7%A3%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%95%D7%AA%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8" target="_blank" rel="noopener" class="btn-wa" style="font-size:15px;padding:14px 26px;">
+        <svg width="18" height="18" fill="white" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        שלחי לי השראה לתור שלך
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ░░░░░░░░░░░░ SOCIAL PROOF ░░░░░░░░░░░░ -->
+<section style="padding:64px 0;background:var(--white);">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:40px;">
+      <span class="section-label">מה אומרות הלקוחות</span>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:8px;">
+        <span class="stars" style="font-size:26px;">★★★★★</span>
+        <span class="font-display" style="font-size:40px;font-weight:900;color:var(--dark);">4.9</span>
+        <span style="font-size:15px;color:var(--gray);">מתוך 200+ ביקורות</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+
+      <!-- WhatsApp bubble card -->
+      <div class="review-card reveal" style="background:#f0fdf4;border:1.5px solid #bbf7d0;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <svg width="18" height="18" fill="#25D366" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span style="font-size:12px;color:#16a34a;font-weight:600;">הודעת וואטסאפ</span>
+        </div>
+        <div style="background:#dcfce7;border-radius:12px 12px 4px 12px;padding:12px 15px;margin-bottom:8px;">
+          <p style="font-size:15px;color:#1a2e1a;line-height:1.7;margin:0;">שחף תודה!! הג'ל כבר חמישה שבועות ועדיין שלם 😍 ואני עם ילדים קטנים מרטיבה ידיים כל היום. את ממש קסם</p>
+        </div>
+        <p style="font-size:11px;color:#86a896;text-align:left;">נקרא ✓✓</p>
+      </div>
+
+      <div class="review-card reveal" style="background:#f0fdf4;border:1.5px solid #bbf7d0;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <svg width="18" height="18" fill="#25D366" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span style="font-size:12px;color:#16a34a;font-weight:600;">הודעת וואטסאפ</span>
+        </div>
+        <div style="background:#dcfce7;border-radius:12px 12px 4px 12px;padding:12px 15px;margin-bottom:8px;">
+          <p style="font-size:15px;color:#1a2e1a;line-height:1.7;margin:0;">שחף אין כמוך!! חשבתי שזה יהיה פחות מקצועי מסלון אבל ממש לא. יחס כזה לא קיבלתי בשום מקום 🙏 לא חוזרת לסלון</p>
+        </div>
+        <p style="font-size:11px;color:#86a896;text-align:left;">נקרא ✓✓</p>
+      </div>
+
+      <div class="review-card reveal" style="background:#f0fdf4;border:1.5px solid #bbf7d0;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <svg width="18" height="18" fill="#25D366" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span style="font-size:12px;color:#16a34a;font-weight:600;">הודעת וואטסאפ</span>
+        </div>
+        <div style="background:#dcfce7;border-radius:12px 12px 4px 12px;padding:12px 15px;margin-bottom:8px;">
+          <p style="font-size:15px;color:#1a2e1a;line-height:1.7;margin:0;">הלק הכי יפה שעשיתי בחיים!! ממש לא ציפיתי לתוצאה כזו 😭❤️ כבר שלחתי לכמה חברות את המספר שלך</p>
+        </div>
+        <p style="font-size:11px;color:#86a896;text-align:left;">נקרא ✓✓</p>
+      </div>
+
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:36px;">
+      <a href="https://wa.me/972548009028?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%97%D7%A3%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%F0%9F%92%85" target="_blank" rel="noopener" class="btn-wa" style="font-size:16px;">
+        <svg width="19" height="19" fill="white" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        רוצה גם תוצאות כאלה? קבעי תור
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░ SERVICES ░░░░░░░░░░░░ -->
+<section style="padding:64px 0;background:var(--cream);">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:36px;">
+      <span class="section-label">מה כלול</span>
+      <h2 class="section-title">הטיפולים שלי</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="service-grid">
+
+      <div class="service-item reveal">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="var(--mocha)" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.091z"/></svg></div>
+        <div><h3 style="font-weight:700;font-size:15.5px;color:var(--dark);margin-bottom:4px;">פדיקור רפואי</h3><p style="font-size:14px;color:var(--gray);line-height:1.5;">ניקוי מעמיק, הסרת קשיות, עיצוב ועור רגליים מטופח.</p></div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="var(--mocha)" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg></div>
+        <div><h3 style="font-weight:700;font-size:15.5px;color:var(--dark);margin-bottom:4px;">מניקור + ג'ל</h3><p style="font-size:14px;color:var(--gray);line-height:1.5;">מניקור קלאסי עם ג'ל עמיד. מחזיק 4 שבועות מינימום.</p></div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="var(--mocha)" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611l-1.306.232a49.848 49.848 0 01-16.658 0l-1.306-.232c-1.717-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+        <div><h3 style="font-weight:700;font-size:15.5px;color:var(--dark);margin-bottom:4px;">עיצוב ציפורניים</h3><p style="font-size:14px;color:var(--gray);line-height:1.5;">נייל ארט, עיצובים מיוחדים וגימורים. מהפשוט ועד המרהיב.</p></div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="var(--mocha)" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <div><h3 style="font-weight:700;font-size:15.5px;color:var(--dark);margin-bottom:4px;">עיצוב גבות</h3><p style="font-size:14px;color:var(--gray);line-height:1.5;">עיצוב מדויק שמסגר את הפנים ומבליט את המבט הטבעי.</p></div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon"><svg width="22" height="22" fill="none" stroke="var(--mocha)" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg></div>
+        <div><h3 style="font-weight:700;font-size:15.5px;color:var(--dark);margin-bottom:4px;">הסרת שיער בשעווה</h3><p style="font-size:14px;color:var(--gray);line-height:1.5;">הסרה חלקה עם שעווה איכותית. עור נקי לאורך שבועות.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░ ABOUT ░░░░░░░░░░░░ -->
+<section style="padding:64px 0;background:var(--white);">
+  <div class="container">
+    <div class="about-grid reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;">
+      <div class="about-photo" style="text-align:center;">
+        <div style="width:210px;height:210px;border-radius:50%;border:4px solid var(--mocha-light);background:var(--mocha-pale);margin:0 auto;overflow:hidden;box-shadow:0 8px 32px rgba(107,79,58,0.18);">
+          <img src="shahaf.png" alt="שחף" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+        </div>
+        <div style="display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap;">
+          <div style="background:var(--mocha-pale);border:1px solid var(--border);border-radius:16px;padding:12px 18px;text-align:center;">
+            <p class="font-display" style="font-size:26px;font-weight:900;color:var(--mocha);">200+</p>
+            <p style="font-size:12px;color:var(--gray);font-weight:500;">לקוחות מרוצות</p>
+          </div>
+          <div style="background:var(--mocha-pale);border:1px solid var(--border);border-radius:16px;padding:12px 18px;text-align:center;">
+            <p class="font-display" style="font-size:26px;font-weight:900;color:var(--mocha);">4.9★</p>
+            <p style="font-size:12px;color:var(--gray);font-weight:500;">ממוצע ביקורות</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">מי אני</span>
+        <h2 class="section-title" style="margin-bottom:16px;">שחף, מטפלת שאוהבת את מה שהיא עושה</h2>
+        <p style="font-size:15.5px;color:var(--gray);line-height:1.7;margin-bottom:16px;">מטפלת ציפורניים מוסמכת עם <strong style="color:var(--dark);">10 שנות ניסיון</strong> וקליניקה פרטית במתחם הסופרים. ציוד מקצועי מלא, חומרים איכותיים.</p>
+        <p style="font-size:15.5px;color:var(--gray);line-height:1.7;margin-bottom:22px;">אווירה אינטימית ורגועה. כל לקוחה מקבלת מלוא הקשב שלי.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--dark);">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--mocha-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="12" height="12" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+            מוסמכת בפדיקור רפואי ומניקור
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--dark);">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--mocha-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="12" height="12" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+            כלים מחוטאים לכל לקוחה, היגיינה מלאה
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--dark);">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--mocha-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="12" height="12" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+            אחריות מלאה על התוצאה
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░ FAQ ░░░░░░░░░░░░ -->
+<section style="padding:64px 0;background:var(--cream);">
+  <div class="container-sm">
+    <div class="reveal" style="text-align:center;margin-bottom:36px;">
+      <span class="section-label">שאלות נפוצות</span>
+      <h2 class="section-title">שאלות שנשאלות הכי הרבה</h2>
+      <div class="divider" style="margin:14px auto 0;"></div>
+    </div>
+    <div class="card reveal" style="padding:0 28px;">
+      <details>
+        <summary>האם זה היגייני לקבל טיפול בבית?<span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></span></summary>
+        <p class="faq-body">כן לחלוטין. אני עובדת עם כלים מחוטאים לכל לקוחה בנפרד, הציוד שלי נשמר בתיק ייעודי. רמת ההיגיינה זהה לכל מכון מוסמך.</p>
+      </details>
+      <details>
+        <summary>כמה זמן מחזיק הג'ל?<span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></span></summary>
+        <p class="faq-body">בממוצע 4 שבועות, גם על מי שמרטיבה ידיים הרבה. רוב הלקוחות שלי חוזרות אלי כל 3 עד 4 שבועות.</p>
+      </details>
+      <details>
+        <summary>מה לוקחים איתי לטיפול?<span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></span></summary>
+        <p class="faq-body">כלום. הקליניקה שלי מאובזרת בכל מה שצריך. את מגיעה, אני מטפלת.</p>
+      </details>
+      <details>
+        <summary>כמה עולה הטיפול?<span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></span></summary>
+        <p class="faq-body">שלחי לי הודעה ואשלח לך מחירון מלא. הכל שקוף מראש, אין הפתעות.</p>
+      </details>
+      <details>
+        <summary>איך מבטלים תור?<span class="faq-icon" aria-hidden="true"><svg width="14" height="14" fill="none" stroke="var(--mocha)" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg></span></summary>
+        <p class="faq-body">הכל דרך וואטסאפ. עד 24 שעות לפני הטיפול ביטול ללא עלות. אני גמישה ואתאים את עצמי ללוח הזמנים שלך.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░ FINAL CTA ░░░░░░░░░░░░ -->
+<section style="padding:72px 20px;background:linear-gradient(135deg,var(--mocha) 0%,#4A3020 100%);text-align:center;">
+  <div class="container-sm">
+    <p style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mocha-light);margin-bottom:14px;">מוכנה לצעד הבא?</p>
+    <h2 class="font-display" style="font-size:clamp(32px,6vw,50px);font-weight:900;color:#fff;line-height:1.2;margin-bottom:16px;">ציפורניים שאנשים<br/>שואלות עליהן</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,0.7);line-height:1.6;max-width:400px;margin:0 auto 32px;">שלחי הודעה קצרה ואחזור אליך תוך דקות.<br/><strong style="color:#fff;">קליניקה במתחם הסופרים</strong></p>
+    <a href="https://wa.me/972548009028?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%97%D7%A3%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%F0%9F%92%85" target="_blank" rel="noopener" class="btn-wa" style="font-size:18px;padding:18px 40px;">
+      <svg width="22" height="22" fill="white" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      שלחי הודעה עכשיו
+    </a>
+    <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:14px;">לחיצה תפתח שיחת וואטסאפ עם הודעה מוכנה מראש</p>
+  </div>
+</section>
+
+<!-- ░ FOOTER ░ -->
+<footer style="background:#2C1A10;padding:24px 20px;text-align:center;">
+  <p class="font-display" style="font-size:24px;color:var(--mocha-light);margin-bottom:4px;">Shahaf Nails</p>
+  <p style="font-size:13px;color:var(--gray-light);">קליניקה במתחם הסופרים · 054-800-9028</p>
+  <p style="font-size:11px;color:rgba(189,176,168,0.35);margin-top:12px;">© 2026 Shahaf Nails</p>
+</footer>
+
+<!-- ░ LIGHTBOX ░ -->
+<div id="lightbox" onclick="closeLightbox()" aria-modal="true" role="dialog" aria-label="תצוגת תמונה">
+  <button onclick="closeLightbox()" style="position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.12);border:none;border-radius:50%;width:44px;height:44px;color:#fff;font-size:20px;cursor:pointer;" aria-label="סגור">✕</button>
+  <button onclick="event.stopPropagation();prevImg()" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;border-radius:50%;width:48px;height:48px;color:#fff;font-size:24px;cursor:pointer;" aria-label="הקודם">›</button>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()"/>
+  <button onclick="event.stopPropagation();nextImg()" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;border-radius:50%;width:48px;height:48px;color:#fff;font-size:24px;cursor:pointer;" aria-label="הבא">‹</button>
+</div>
+
+<script>
+// ── Cursor Glow ──
+(function(){
+  var g=document.getElementById('cursor-glow');
+  document.addEventListener('mousemove',function(e){
+    g.style.left=e.clientX+'px';
+    g.style.top=e.clientY+'px';
+  });
+})();
+
+// ── Scroll Reveal ──
+(function(){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+
+// ── Before/After Slider ──
+(function(){
+  var wrap=document.getElementById('baWrap');
+  var after=document.getElementById('baAfter');
+  var line=document.getElementById('baLine');
+  var handle=document.getElementById('baHandle');
+  var dragging=false;
+  function setPos(x){
+    var rect=wrap.getBoundingClientRect();
+    var pct=Math.min(Math.max((rect.right-x)/rect.width,0.05),0.95);
+    var css=(pct*100)+'%';
+    after.style.width=css;
+    line.style.right=css;
+    handle.style.right=css;
+  }
+  wrap.addEventListener('mousedown',function(e){dragging=true;setPos(e.clientX);});
+  document.addEventListener('mouseup',function(){dragging=false;});
+  document.addEventListener('mousemove',function(e){if(dragging)setPos(e.clientX);});
+  wrap.addEventListener('touchstart',function(e){dragging=true;setPos(e.touches[0].clientX);},{passive:true});
+  document.addEventListener('touchend',function(){dragging=false;});
+  document.addEventListener('touchmove',function(e){if(dragging)setPos(e.touches[0].clientX);},{passive:true});
+})();
+
+// ── Style Quiz ──
+var quizData={
+  natural:{emoji:'🤍',title:'סגנון נקי וטבעי',desc:'Nude, פרנץ\' קלאסי, מינימל. תוצאה אלגנטית שמדברת בפחות.',msg:'היי שחף, אני מחפשת סגנון נקי וטבעי 🤍 אשמח לקבוע תור'},
+  bold:{emoji:'💅',title:'נועזת ובולטת',desc:'פרנץ\' צבעוני, גוונים עזים. הציפורן שלך תהיה ה-statement.',msg:'היי שחף, אני מחפשת עיצוב נועז וצבעוני 💅 אשמח לקבוע תור'},
+  art:{emoji:'🦋',title:'מלאכת יד אמנותית',desc:'נייל ארט, פרפרים, ציורים. כל ציפורן היא יצירה.',msg:'היי שחף, אני מחפשת נייל ארט 🦋 אשמח לקבוע תור'},
+  luxury:{emoji:'✨',title:'לוקסוס מלא',desc:'גלייטר, כרום, זהב. ציפורניים שאנשים שואלות עליהן.',msg:'היי שחף, אני מחפשת עיצוב לוקסוס ✨ אשמח לקבוע תור'}
+};
+function selectQuiz(val){
+  document.querySelectorAll('.quiz-opt').forEach(function(b){b.classList.remove('selected');});
+  var btn=document.querySelector('.quiz-opt[data-val="'+val+'"]');
+  if(btn)btn.classList.add('selected');
+  setTimeout(function(){
+    var d=quizData[val];
+    document.getElementById('quiz-emoji').textContent=d.emoji;
+    document.getElementById('quiz-title').textContent=d.title;
+    document.getElementById('quiz-desc').textContent=d.desc;
+    document.getElementById('quiz-wa-link').href='https://wa.me/972548009028?text='+encodeURIComponent(d.msg);
+    document.getElementById('quiz-step-1').style.display='none';
+    document.getElementById('quiz-result').style.display='block';
+  },340);
+}
+function resetQuiz(){
+  document.querySelectorAll('.quiz-opt').forEach(function(b){b.classList.remove('selected');});
+  document.getElementById('quiz-step-1').style.display='block';
+  document.getElementById('quiz-result').style.display='none';
+}
+
+// ── Lightbox ──
+var imgs=['work-1.jpg','work-2.jpg','work-3.jpg','work-5.jpg','work-6.jpg','work-7.jpg'];
+var cur=0;
+function openLightbox(i){cur=i;document.getElementById('lightbox-img').src=imgs[i];document.getElementById('lightbox').style.display='flex';document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').style.display='none';document.body.style.overflow='';}
+function nextImg(){cur=(cur+1)%imgs.length;document.getElementById('lightbox-img').src=imgs[cur];}
+function prevImg(){cur=(cur-1+imgs.length)%imgs.length;document.getElementById('lightbox-img').src=imgs[cur];}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')nextImg();if(e.key==='ArrowRight')prevImg();});
+</script>
+</body>
+</html>
