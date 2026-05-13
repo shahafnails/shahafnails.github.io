@@ -97,15 +97,12 @@ nav .nav-cta:hover{opacity:.9;color:#fff;}
   box-shadow:0 6px 24px rgba(173,20,87,.45);}
 .photo-tag2 p{font-size:11px;font-weight:700;color:#fff;line-height:1.4;}
 
-/* ── marquee dual ── */
-.marquee-wrap{overflow:hidden;background:var(--grad);}
-.marquee-row{padding:9px 0;overflow:hidden;}
-.marquee-row+.marquee-row{border-top:1px solid rgba(255,255,255,.12);}
-.mtrack{display:flex;white-space:nowrap;animation:mq 22s linear infinite;}
-.mtrack.rev{animation-direction:reverse;animation-duration:28s;}
-.mtrack span{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.85);padding:0 20px;}
-.mtrack .d{color:rgba(255,255,255,.3);}
-@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* ── ticker bar (static) ── */
+.ticker-bar{background:var(--grad);padding:12px 0;}
+.ticker-inner{max-width:1040px;margin:0 auto;padding:0 28px;
+  display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px 20px;}
+.ticker-inner span{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.9);}
+.ticker-inner .d{color:rgba(255,255,255,.35);font-size:10px;}
 
 /* ── trust bar ── */
 .trust-bar{background:#fff;border-bottom:1px solid var(--border);padding:14px 20px;}
@@ -256,10 +253,23 @@ footer{background:var(--pp);padding:28px 20px;text-align:center;border-top:1px s
   background:linear-gradient(135deg,var(--wa),var(--wad));
   color:#fff;font-family:'Heebo',sans-serif;font-size:17px;font-weight:700;
   text-decoration:none;cursor:pointer;border:none;
-  box-shadow:0 6px 28px rgba(37,211,102,.4);
+  box-shadow:0 6px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.25);
   transition:transform .2s,box-shadow .2s;
   position:relative;overflow:hidden;white-space:nowrap;}
-.btn-wa:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(37,211,102,.55);}
+/* Diamond shimmer sweep */
+.btn-wa::before{
+  content:'';position:absolute;top:0;right:-120%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+  transform:skewX(-20deg);
+  animation:shimmer 2.2s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes shimmer{
+  0%{right:-120%;}
+  60%,100%{right:130%;}
+}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(37,211,102,.6),0 0 20px rgba(37,211,102,.2);}
 .btn-wa::after{content:'';position:absolute;inset:-2px;border-radius:100px;
   background:linear-gradient(135deg,var(--wa),var(--wad));
   opacity:0;z-index:-1;animation:pulse-wa 2.5s ease-in-out infinite;}
@@ -436,19 +446,16 @@ footer{background:var(--pp);padding:28px 20px;text-align:center;border-top:1px s
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-row">
-    <div class="mtrack">
-      <span>מניקור</span><span class="d">·</span><span>פדיקור רפואי</span><span class="d">·</span><span>ג'ל עמיד</span><span class="d">·</span><span>נייל ארט</span><span class="d">·</span><span>עיצוב ציפורניים</span><span class="d">·</span><span>שחף נאילס</span><span class="d">·</span><span>10 שנות ניסיון</span><span class="d">·</span>
-      <span>מניקור</span><span class="d">·</span><span>פדיקור רפואי</span><span class="d">·</span><span>ג'ל עמיד</span><span class="d">·</span><span>נייל ארט</span><span class="d">·</span><span>עיצוב ציפורניים</span><span class="d">·</span><span>שחף נאילס</span><span class="d">·</span><span>10 שנות ניסיון</span><span class="d">·</span>
-    </div>
-  </div>
-  <div class="marquee-row">
-    <div class="mtrack rev">
-      <span>קליניקה פרטית</span><span class="d">✦</span><span>מתחם הסופרים</span><span class="d">✦</span><span>כלים מחוטאים</span><span class="d">✦</span><span>חומרים איכותיים</span><span class="d">✦</span><span>4.9 כוכבים</span><span class="d">✦</span><span>200+ לקוחות</span><span class="d">✦</span>
-      <span>קליניקה פרטית</span><span class="d">✦</span><span>מתחם הסופרים</span><span class="d">✦</span><span>כלים מחוטאים</span><span class="d">✦</span><span>חומרים איכותיים</span><span class="d">✦</span><span>4.9 כוכבים</span><span class="d">✦</span><span>200+ לקוחות</span><span class="d">✦</span>
-    </div>
+<!-- TICKER BAR -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span>מניקור</span><span class="d">·</span>
+    <span>פדיקור רפואי</span><span class="d">·</span>
+    <span>ג'ל עמיד</span><span class="d">·</span>
+    <span>נייל ארט</span><span class="d">·</span>
+    <span>עיצוב ציפורניים</span><span class="d">·</span>
+    <span>10 שנות ניסיון</span><span class="d">·</span>
+    <span>מתחם הסופרים</span>
   </div>
 </div>
 
