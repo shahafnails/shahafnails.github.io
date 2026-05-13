@@ -250,30 +250,48 @@ footer{background:var(--pp);padding:28px 20px;text-align:center;border-top:1px s
 /* ── buttons ── */
 .btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;
   padding:16px 32px;border-radius:100px;
-  background:linear-gradient(135deg,var(--wa),var(--wad));
+  background:linear-gradient(135deg,#2ed573,var(--wa),var(--wad));
+  background-size:200% 200%;
   color:#fff;font-family:'Heebo',sans-serif;font-size:17px;font-weight:700;
   text-decoration:none;cursor:pointer;border:none;
-  box-shadow:0 6px 28px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.25);
+  box-shadow:0 6px 28px rgba(37,211,102,.45),
+             0 2px 8px rgba(37,211,102,.3),
+             inset 0 1px 0 rgba(255,255,255,.3),
+             inset 0 -1px 0 rgba(0,0,0,.1);
   transition:transform .2s,box-shadow .2s;
-  position:relative;overflow:hidden;white-space:nowrap;}
-/* Diamond shimmer sweep */
+  position:relative;overflow:visible;white-space:nowrap;
+  animation:gem-pulse 3s ease-in-out infinite;}
+@keyframes gem-pulse{
+  0%,100%{box-shadow:0 6px 28px rgba(37,211,102,.45),0 2px 8px rgba(37,211,102,.3),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.1);}
+  50%{box-shadow:0 8px 36px rgba(37,211,102,.7),0 0 20px rgba(37,211,102,.4),0 0 40px rgba(37,211,102,.15),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.1);}
+}
+/* Shimmer sweep */
 .btn-wa::before{
-  content:'';position:absolute;top:0;right:-120%;
-  width:60%;height:100%;
-  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
-  transform:skewX(-20deg);
-  animation:shimmer 2.2s ease-in-out infinite;
-  pointer-events:none;
+  content:'';position:absolute;inset:0;border-radius:100px;overflow:hidden;
+  background:linear-gradient(105deg,transparent 15%,rgba(255,255,255,.08) 30%,rgba(255,255,255,.75) 50%,rgba(255,255,255,.08) 70%,transparent 85%);
+  animation:shimmer 1.8s ease-in-out infinite;
+  pointer-events:none;z-index:1;
 }
 @keyframes shimmer{
-  0%{right:-120%;}
-  60%,100%{right:130%;}
+  0%{transform:translateX(-180%) skewX(-20deg);}
+  55%,100%{transform:translateX(180%) skewX(-20deg);}
 }
-.btn-wa:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(37,211,102,.6),0 0 20px rgba(37,211,102,.2);}
-.btn-wa::after{content:'';position:absolute;inset:-2px;border-radius:100px;
-  background:linear-gradient(135deg,var(--wa),var(--wad));
-  opacity:0;z-index:-1;animation:pulse-wa 2.5s ease-in-out infinite;}
-@keyframes pulse-wa{0%,100%{transform:scale(1);opacity:0;}50%{transform:scale(1.09);opacity:.28;}}
+/* Outer glow ring */
+.btn-wa::after{content:'';position:absolute;inset:-3px;border-radius:100px;
+  background:linear-gradient(135deg,rgba(46,213,115,.6),rgba(37,211,102,.3),rgba(18,140,126,.6));
+  opacity:0;z-index:-1;animation:ring-pulse 1.8s ease-in-out infinite;}
+@keyframes ring-pulse{0%,100%{opacity:0;transform:scale(1);}50%{opacity:.4;transform:scale(1.04);}}
+.btn-wa:hover{transform:translateY(-3px);}
+
+/* Sparkle stars on WA buttons */
+@keyframes spark-pop{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(0deg);}
+  40%{opacity:1;transform:translate(-50%,-50%) scale(1.3) rotate(20deg);}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(0.4) rotate(45deg) translateY(-8px);}
+}
+.wa-spark{position:absolute;pointer-events:none;font-size:10px;line-height:1;
+  color:rgba(255,255,255,.95);text-shadow:0 0 6px rgba(255,255,255,1),0 0 12px rgba(46,213,115,.8);
+  animation:spark-pop .75s ease forwards;z-index:10;}
 
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;
   border-radius:100px;border:2px solid var(--pd);
@@ -324,12 +342,12 @@ footer{background:var(--pp);padding:28px 20px;text-align:center;border-top:1px s
 .lb-btn:hover{background:rgba(255,255,255,.2);}
 
 /* ── reveal ── */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.on{opacity:1;transform:translateY(0);}
-.reveal-l{opacity:0;transform:translateX(26px);transition:opacity .7s ease,transform .7s ease;}
-.reveal-l.on{opacity:1;transform:translateX(0);}
-.reveal-s{opacity:0;transform:scale(.95);transition:opacity .6s ease,transform .6s ease;}
-.reveal-s.on{opacity:1;transform:scale(1);}
+.reveal{opacity:0;transition:opacity .6s ease;}
+.reveal.on{opacity:1;}
+.reveal-l{opacity:0;transition:opacity .6s ease;}
+.reveal-l.on{opacity:1;}
+.reveal-s{opacity:0;transition:opacity .6s ease;}
+.reveal-s.on{opacity:1;}
 
 /* ── section labels ── */
 .sl{font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--p);display:block;margin-bottom:10px;}
@@ -339,7 +357,7 @@ footer{background:var(--pp);padding:28px 20px;text-align:center;border-top:1px s
 .stars{color:var(--p);}
 .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;}to{opacity:1;}}
 @media(max-width:640px){
   .hero-ctas{flex-direction:column;align-items:flex-start;}
   .stats-grid{gap:10px;}
@@ -875,6 +893,28 @@ window.addEventListener('scroll',function(){
     });
   },{threshold:0.5});
   document.querySelectorAll('[data-count]').forEach(function(el){io.observe(el);});
+})();
+
+// ── Diamond sparkles on WA buttons ──
+(function(){
+  var STARS=['✦','✧','★','✶','✸'];
+  function spawnSpark(btn){
+    var s=document.createElement('span');
+    s.className='wa-spark';
+    s.textContent=STARS[Math.floor(Math.random()*STARS.length)];
+    var bw=btn.offsetWidth, bh=btn.offsetHeight;
+    s.style.left=(Math.random()*120-10)+'%';
+    s.style.top=(Math.random()*120-10)+'%';
+    s.style.fontSize=(Math.random()*8+7)+'px';
+    btn.style.overflow='visible';
+    btn.appendChild(s);
+    setTimeout(function(){s.remove();},760);
+  }
+  document.querySelectorAll('.btn-wa,.btn-bar').forEach(function(btn){
+    btn.style.position='relative';
+    setInterval(function(){spawnSpark(btn);},320);
+    spawnSpark(btn);setTimeout(function(){spawnSpark(btn);},160);
+  });
 })();
 
 // ── Notification bubble ──
